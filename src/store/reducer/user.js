@@ -9,12 +9,17 @@ const InititalState={
         data:[],
         success:false,
     },
-    update:{
+    edit:{
         loading:false,
         data:[],
         success:false,
     },
     create:{
+        loading:false,
+        data:[],
+        success:false,
+    },
+    editSelection:{
         loading:false,
         data:[],
         success:false,
@@ -44,6 +49,27 @@ switch (type) {
                 success: true,
             }
         })
+    case "GET_SINGLE_USER_DETAILS_LOADING":
+        return ({
+            ...state,
+            editSelection: {
+                ...state.editSelection,
+                data: [],
+                loading: true,
+                success: false,
+            }
+        })
+
+    case "GET_SINGLE_USER_DETAILS_DATA":
+        return ({
+            ...state,
+            editSelection: {
+                ...state.editSelection,
+                data: payload,
+                loading: false,
+                success: true,
+            }
+        })
 
     case "POST_USER_DETAILS_LOADING":
         return ({
@@ -59,8 +85,8 @@ switch (type) {
     case "POST_USER_DETAILS_RESET":
         return ({
             ...state,
-            create: {
-                ...state.create,
+            edit: {
+                ...state.edit,
                 data: [],
                 loading: false,
                 success: false,
@@ -97,8 +123,8 @@ switch (type) {
     case "EDIT_USER_DETAILS_DATA":
         return ({
             ...state,
-            create: {
-                ...state.create,
+            edit: {
+                ...state.edit,
                 data: payload,
                 loading: false,
                 success: true,
@@ -133,7 +159,7 @@ switch (type) {
                 success: true,
             },list: {
                 ...state.list,
-                data: state.list.data.filter((item) => item._id !== payload),
+                data: state.list.data.filter((item) => item._id !== payload._id),
                 loading: false,
                 success: true,
             },
