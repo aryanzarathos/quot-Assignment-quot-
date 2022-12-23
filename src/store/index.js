@@ -11,7 +11,6 @@ let composeEnhancers = compose;
   
 const store = createStore(
     allreducers,
-    {user:"balkab",pikachu:"pikachu"},
     composeEnhancers(applyMiddleware(thunk))
   )
   export default store;

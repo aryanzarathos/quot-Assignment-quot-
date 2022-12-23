@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteAdminCourseList } from '../store/Actions/user';
 import EditUser from './EditUser';
 
 const UserDetail = ({ User }) => {
+    const dispatch = useDispatch();
 
-    const removeUser=()=>{
-
+    const removeUser=(id)=>{
+  dispatch(deleteAdminCourseList(id))
     }
-    const editUser=()=>{
 
-    }
 
     const [isEdit, setTrue] = useState(!true)
 
@@ -27,10 +28,10 @@ const UserDetail = ({ User }) => {
             <div className="card-body">
                 {
                     isEdit === false ?
-                        <h5 className="card-title">{User.title}</h5>
+                        <h5 className="card-title">{User.name}</h5>
                         :
-                        <EditUser id={User.id} title={User.title} editUser={editUser} setTrue={setTrue} />}
-                <p className="blockquote-footer">{User.author}</p>
+                        <EditUser />}
+                {/* <p className="blockquote-footer">{User.User}</p> */}
             </div>
         </div>
 

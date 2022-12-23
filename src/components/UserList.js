@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import UserDetail from './UserDetail';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAdminCourseList } from '../store/Actions/user/index';
 const UserList = () => {
 
     const dispatch =useDispatch()
-    const { GetlistSuccess, GetlistData } = useSelector((state) => {
+    const { GetlistSuccess, GetlistData,GetlistLoading } = useSelector((state) => {
         return {
-            GetlistData: state.user.data,
-            GetlistSuccess: state.user.succes,
+            GetlistData: state.user.list.data,
+            GetlistSuccess: state.user.list.success,
+            GetlistLoading: state.user.list.loading,
         }
     })
     useEffect(()=>{
-        dispatch()
+        dispatch(getAdminCourseList())
     },[])
     return (
         <React.Fragment>
             {
-                GetlistSuccess ? (
+               !GetlistLoading && GetlistSuccess ? (
                     GetlistData.length ?
                         <div className="card">
 

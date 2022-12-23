@@ -51,6 +51,17 @@ switch (type) {
             create: {
                 ...state.create,
                 data: [],
+                loading: true,
+                success: false,
+            }
+
+        })
+    case "POST_USER_DETAILS_RESET":
+        return ({
+            ...state,
+            create: {
+                ...state.create,
+                data: [],
                 loading: false,
                 success: false,
             }
